@@ -1,0 +1,23 @@
+[tool.ruff]
+# 최대 줄 길이 (black, fastapi 기준 88 또는 100 권장)
+line-length = 100
+
+# 검사할 Python 버전
+target-version = "py310"
+
+# 어떤 규칙들을 활성화할지
+select = ["E", "F", "I"]
+
+# 무시할 규칙
+ignore = ["E501"]
+
+# FastAPI 프로젝트에서 자주 제외하는 경로
+exclude = [
+    ".venv",
+    "migrations",
+    "__pycache__",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
