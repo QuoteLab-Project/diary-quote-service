@@ -8,7 +8,7 @@ app = FastAPI()
 register_tortoise(
     app,
     config=TORTOISE_ORM,
-    generate_schemas=False,  # ❗ Aerich 사용 시 반드시 False
+    generate_schemas=False,
     add_exception_handlers=True,
 )
 
