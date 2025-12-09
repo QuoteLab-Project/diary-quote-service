@@ -22,6 +22,6 @@ exclude = [
 quote-style = "double"
 indent-style = "space"
 [tool.aerich]
-tortoise_orm = "db.TORTOISE_ORM"
+tortoise_orm = "app.db.TORTOISE_ORM"
 location = "./migrations"
 src_folder = "./."

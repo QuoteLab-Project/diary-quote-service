@@ -1,4 +1,3 @@
-# 회원 정보 검증
 from pydantic import BaseModel, EmailStr
 
 
@@ -7,17 +6,9 @@ class UserCreate(BaseModel):
     nickname: str
     password: str
 
-
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
-
-################
-# # 회원 생성 요청 모델 (입력용)
-# class UserSignRequest(BaseModel):
-#     email: EmailStr
-#     name: str
-#     password: str
 
 # JWT 토큰 전달용 모델 (데코레이터 할때 사용)
 class Token(BaseModel):
