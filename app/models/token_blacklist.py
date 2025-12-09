@@ -12,3 +12,18 @@ class TokenBlacklist(Model):
 
     def __str__(self):
         return self.token[:30]
+    
+
+# from tortoise import fields, models
+
+# class TokenBlacklist(models.Model):
+#     id = fields.IntField(pk=True)
+#     token = fields.CharField(max_length=255, unique=True)
+#     expired_at = fields.DatetimeField(null=True)
+
+#     user = fields.ForeignKeyField(
+#         "models.User", related_name="token_blacklists"
+#     )
+
+#     class Meta:
+#         table = "token_blacklist"
