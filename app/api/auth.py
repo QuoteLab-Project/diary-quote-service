@@ -23,7 +23,7 @@ async def signup(data: UserCreate):
     user = await User.create(
         email=data.email,
         nickname=data.nickname,
-        password_hash=hash_password(data.password),
+        hashed_password=hash_password(data.password),
     )
 
     return {

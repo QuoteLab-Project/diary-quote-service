@@ -24,7 +24,7 @@ indent-style = "space"
 
 [tool.aerich]
 tortoise_orm = "app.database.TORTOISE_ORM"
-location = "./app/db/migrations"
+location = "./migrations"
 src_folder = "./."
 
 
@@ -60,4 +60,9 @@ dependencies = [
     "tortoise-orm>=0.25.1",
     "typing-inspection==0.4.2",
     "uvicorn==0.38.0",
+]
+
+[dependency-groups]
+dev = [
+    "aerich>=0.9.2",
 ]
