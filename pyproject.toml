@@ -21,10 +21,12 @@ exclude = [
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
 [tool.aerich]
-tortoise_orm = "app.db.TORTOISE_ORM"
-location = "./migrations"
+tortoise_orm = "app.database.TORTOISE_ORM"
+location = "./app/db/migrations"
 src_folder = "./."
+
 
 [project]
 name = "diary-quote-service"
