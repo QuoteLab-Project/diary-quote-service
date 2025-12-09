@@ -25,3 +25,13 @@ indent-style = "space"
 tortoise_orm = "app.db.TORTOISE_ORM"
 location = "./migrations"
 src_folder = "./."
+
+[tool.poetry.dependencies]
+fastapi = "^0.121.2"
+
+[project]
+name = "diary-quote-service"
+version = "0.1.0"
+dependencies = [
+    "tortoise-orm>=0.25.1",
+]
