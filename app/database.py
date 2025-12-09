@@ -7,8 +7,11 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["app.db.models"],  # ✅ 실제 모델 위치
+            "models": [
+                "app.models"
+            ],
             "default_connection": "default",
         },
     },
 }
+
