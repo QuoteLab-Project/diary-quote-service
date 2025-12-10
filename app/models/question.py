@@ -9,7 +9,7 @@ class Question(models.Model):
         table = "questions"
 
 from tortoise import fields
-from tortoise.models import Model
+# from tortoise.models import Model
 
 # class Category(Model):
 #     id = fields.IntField(pk=True)
