@@ -61,3 +61,7 @@ async def logout(credentials: HTTPAuthorizationCredentials = Depends(security)):
 
     await TokenBlacklist.create(token=token)
     return {"message": "Logged out successfully"}
+
+@router.get("/home")
+async def login_page(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
