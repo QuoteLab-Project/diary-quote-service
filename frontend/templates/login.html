@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <title>로그인</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <h2>로그인</h2>
+
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="이메일" required>
+                <input type="password" id="password" placeholder="비밀번호" required>
+
+                <button type="submit">로그인</button>
+            </form>
+
+            <p class="signup-link">
+                아직 계정이 없으신가요? <a href="/auth/signup">회원가입</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const payload = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+            };
+
+            const res = await fetch("/auth/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload),
+            });
+
+            const data = await res.json();
+
+            if (data.access_token) {
+                localStorage.setItem("token", data.access_token);
+                alert("로그인 성공!");
+                // 이후 redirect 하고 싶으면:
+                // window.location.href = "/dashboard";
+            } else {
+                alert(data.detail || "로그인 실패");
+            }
+        });
+    </script>
+</body>
+</html>
