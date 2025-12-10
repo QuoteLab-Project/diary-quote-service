@@ -16,9 +16,9 @@ class Token(BaseModel):
     token_type: str
 
 # 회원 로그인 요청 모델
-class UserLoginRequest(BaseModel):
-    email: str
-    password: str
+# class UserLoginRequest(BaseModel):
+#     email: str
+#     password: str
 
 # 회원 로그인 응답 모델
 class UserLoginResponse(BaseModel):
