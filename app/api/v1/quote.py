@@ -1,30 +1,31 @@
 # 랜덤 명언 제공 + 북마크 추가/조회/삭제
-from fastapi import APIRouter, Depends, HTTPException
-from app.models.quote import Quote
-from app.models.bookmark import Bookmark
-from app.models.user import User
-from app.core.auth import get_current_user
 import random
-import os
-import json
+
+from fastapi import APIRouter, Depends, HTTPException
+from tortoise import Tortoise
+
+from app.core.auth import get_current_user
+from app.models.bookmark import Bookmark
+from app.models.quote import Quote
+from app.models.user import User
+from app.scraping.quote_scraper import scrape_and_save_quotes
 
 router = APIRouter()
 
 # quotes.json에서 읽은 리스트 중 랜덤으로 하나 반환
 @router.get("/quotes/random")
 async def random_quote():
-    quote = await Quote.all().order_by('?').first()
-    if not quote:
-        raise HTTPException(status_code=404, detail="No quotes available")
-    return {
-        "id": quote.id,
-        "content": quote.content,
-        "author": quote.author
-    }
+    total = await Quote.all().count()
+    if total == 0:
+        raise HTTPException(status_code=404, detail="등록된 명언이 없습니다.")
+
+    random_index = random.randrange(total)
+    quote = await Quote.all().offset(random_index).limit(1).first()
+
+    return quote
 
 # 특정 명언을 북마크에 추가
 @router.post("/quotes/{quote_id}/bookmark")
-
 # Depends(get_current_user) => 현재 로그인한 유저 기준
 async def add_bookmark(quote_id: int, user: User = Depends(get_current_user)):
     quote = await Quote.get_or_none(id=quote_id)
@@ -64,4 +65,7 @@ async def remove_bookmark(quote_id: int, user: User = Depends(get_current_user))
     await bookmark.quotes.remove(quote)
     return {"message": "Bookmark removed successfully"}
 
-quotes_router = router
+@router.post("/quotes/scrape")
+async def scrape_quotes_api():
+    quotes = await scrape_and_save_quotes(max_pages=5)
+    return {"saved": len(quotes)}
