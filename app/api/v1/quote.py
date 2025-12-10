@@ -10,17 +10,6 @@ import json
 
 router = APIRouter()
 
-# 프로젝트 루트 기준 경로
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# QUOTES_FILE = os.path.join(BASE_DIR, "data", "quotes.json")
-
-# quotes.json 읽기
-# with open(QUOTES_FILE, "r", encoding="utf-8") as f:
-#     quotes = json.load(f)
-
-# def get_random_quote():
-#     return random.choice(quotes)
-
 # quotes.json에서 읽은 리스트 중 랜덤으로 하나 반환
 @router.get("/quotes/random")
 async def random_quote():

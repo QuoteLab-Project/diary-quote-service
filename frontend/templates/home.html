@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <title>홈</title>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- 명언 카드 -->
+    <div class="card" id="quote-card">
+        <h3>오늘의 명언</h3>
+
+        <div class="content">
+            <p id="quote-text">명언 텍스트가 여기에 표시됩니다.</p>
+            <span id="quote-author">- 저자 -</span>
+        </div>
+
+        <div class="card-buttons">
+            <button class="primary" onclick="loadQuote()">명언 바꾸기</button>
+            <button class="secondary" onclick="bookmarkQuote()">⭐ 북마크</button>
+        </div>
+    </div>
+
+
+    <!-- 일기 카드 -->
+    <div class="card" id="diary-card">
+        <h3>나의 일기</h3>
+
+        <div class="content">
+            <p id="diary-preview">최근 일기가 여기에 표시됩니다.</p>
+            <span id="diary-time">수정 시간: -</span>
+        </div>
+
+        <div class="card-buttons">
+            <button class="primary" onclick="goWrite()">작성하기</button>
+            <button class="secondary" onclick="goEdit()">수정</button>
+            <button class="danger" onclick="deleteDiary()">삭제</button>
+        </div>
+    </div>
+
+
+    <!-- 오늘의 질문 카드 -->
+    <div class="card" id="question-card">
+        <h3>오늘의 질문</h3>
+
+        <div class="content">
+            <p id="question-text">질문이 여기에 표시됩니다.</p>
+        </div>
+
+        <div class="card-buttons">
+            <button class="primary" onclick="loadQuestion()">질문 바꾸기</button>
+        </div>
+    </div>
+
+
+    <!-- 북마크 카드 -->
+    <div class="card" id="bookmark-card">
+        <h3>북마크</h3>
+
+        <div class="content bookmark-list" id="bookmark-list">
+            <p class="empty">북마크한 명언이 없습니다.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function loadQuote() {}
+    function bookmarkQuote() {}
+    function loadQuestion() {}
+    function goWrite() { window.location.href = "/diary/write"; }
+    function goEdit() {}
+    function deleteDiary() {}
+</script>
+
+</body>
+</html>
