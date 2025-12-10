@@ -1,14 +1,19 @@
-from fastapi import APIRouter, Depends, HTTPException
-from jose import jwt, JWTError
+from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from jose import jwt, JWTError
 
+from app.core.templates import templates
 from app.models.user import User
 from app.models.token_blacklist import TokenBlacklist
 from app.schemas.user import UserCreate, UserLogin
-from app.core.security import hash_password, verify_password, create_access_token, SECRET_KEY, ALGORITHM
+from app.core.security import hash_password, verify_password, create_access_token
 
 router = APIRouter()
 security = HTTPBearer()
+
+@router.get("/signup")
+async def signup_page(request: Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
 
 @router.post("/signup")
 async def signup(data: UserCreate):
@@ -32,6 +37,10 @@ async def signup(data: UserCreate):
         "nickname": user.nickname,
     }
 
+@router.get("/login")
+async def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
 
 @router.post("/login")
 async def login(data: UserLogin):
@@ -39,7 +48,7 @@ async def login(data: UserLogin):
     if not user:
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
-    if not verify_password(data.password, user.password_hash):
+    if not verify_password(data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
     token = create_access_token({"user_id": user.id})

@@ -4,12 +4,11 @@ from jose import jwt
 from passlib.context import CryptContext
 import os
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "super_secret_fallback_key")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 
 def _normalize_password(password: str) -> bytes:
     # bcrypt는 "바이트 기준 72byte" 제한을 검사함
