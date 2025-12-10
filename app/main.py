@@ -6,6 +6,7 @@ from tortoise.contrib.fastapi import register_tortoise
 
 from app.database import TORTOISE_ORM
 from app.api.v1.auth import router as auth_router
+from app.api.v1.diary import router as auth_diary
 # from app.api.v1.quote import quotes_router
 
 # Frontend
@@ -29,7 +30,7 @@ register_tortoise(
 
 # Router 등록
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
-# app.include_router(quotes_router, prefix="/api", tags=["Quotes"])
+app.include_router(auth_diary, prefix="/diary", tags=["Diary"])
 
 @app.get("/")
 async def root():

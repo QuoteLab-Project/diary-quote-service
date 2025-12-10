@@ -41,7 +41,6 @@ async def signup(data: UserCreate):
 async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-
 @router.post("/login")
 async def login(data: UserLogin):
     user = await User.filter(email=data.email).first()
@@ -53,7 +52,6 @@ async def login(data: UserLogin):
 
     token = create_access_token({"user_id": user.id})
     return {"access_token": token, "token_type": "bearer"}
-
 
 @router.post("/logout")
 async def logout(credentials: HTTPAuthorizationCredentials = Depends(security)):
