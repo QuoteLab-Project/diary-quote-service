@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body class="auth-body">
+
+<div class="auth-card">
+    <h1 class="auth-title">회원가입</h1>
+
+    <form id="signupForm" class="auth-form">
+        <input type="email" name="email" placeholder="이메일" required class="auth-input">
+        <input type="text" name="nickname" placeholder="닉네임" required class="auth-input">
+        <input type="password" name="password" placeholder="비밀번호" required class="auth-input">
+
+        <button type="submit" class="btn-primary">회원가입</button>
+    </form>
+
+    <p class="auth-toggle">
+        이미 계정이 있으신가요?
+        <a href="/login">로그인 하기</a>
+    </p>
+</div>
+
+<script src="/static/signup.js"></script>
+</body>
+</html>

@@ -35,9 +35,9 @@ from tortoise.models import Model
 class TokenBlacklist(Model):
     id = fields.IntField(pk=True)
     token = fields.CharField(max_length=255)
-    expired_at = fields.DatetimeField()
+    expired_at = fields.DatetimeField(null=True)
 
-    user = fields.ForeignKeyField("models.User", related_name="tokens")
+    user = fields.ForeignKeyField("models.User", related_name="tokens", null=True)
 
     class Meta:
         table = "token_blacklist"
