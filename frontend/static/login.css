@@ -1,4 +1,4 @@
-/* 전체 배경: 초록 → 파랑 부드러운 그라데이션 */
+/* 부드러운 종이 질감 느낌 */
 body {
     margin: 0;
     padding: 0;
@@ -8,100 +8,102 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-
-    background: linear-gradient(135deg, #a9e6b6 0%, #7cc9e8 100%);
+    background: #f7f3e9; /* 종이색 */
+    font-family: "Noto Sans KR", sans-serif;
 }
 
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* 카드 전체 감성 */
 .login-card {
-    background: rgba(255, 255, 255, 0.90);
-    backdrop-filter: blur(8px);
-    width: 400px;
-    padding: 40px 35px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 380px;
+    padding: 45px 40px;
+    border-radius: 16px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: #fffdf8; /* 밝은 크림색 */
+    border: 1px solid #e8e2d8; /* 종이 테두리 느낌 */
+
+    /* 다이어리 같은 살짝 진한 그림자 */
+    box-shadow: 0 6px 15px rgba(140, 120, 90, 0.15);
+
+    text-align: center;
 }
 
 /* 제목 */
 .login-card h2 {
     font-size: 26px;
-    margin-bottom: 25px;
-    color: #2e3a59;
-    text-align: center;
+    margin-bottom: 6px;
+    color: #5a4633; /* 브라운 */
+    font-weight: 700;
 }
 
-/* 폼 layout */
-.login-card form {
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #8b7663;
+}
+
+/* form layout */
+.login-form {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* input */
+/* input 스타일 */
 .login-card input {
     width: 90%;
-    padding: 14px 15px;
+    padding: 14px;
     margin: 10px 0;
-    border: 1px solid #d4dbe6;
-    border-radius: 12px;
+
+    border-radius: 10px;
+    border: 1px solid #d8cfc4; /* 연한 연필선 느낌 */
+    background: #fefdfb;
+
     font-size: 15px;
-    background-color: #f9f9fc;
-    transition: all 0.25s ease;
+    color: #4e453c;
+
+    transition: 0.2s ease;
 }
 
 .login-card input:focus {
-    border-color: #62b6e9;
-    box-shadow: 0 0 8px rgba(98, 182, 233, 0.35);
+    border-color: #b9a695;
+    box-shadow: 0 0 6px rgba(185, 166, 149, 0.4);
     outline: none;
 }
 
-/* 버튼 */
+/* 버튼 – 다이어리 표지 느낌의 녹색 */
 .login-card button {
     width: 90%;
     padding: 14px;
-    margin-top: 18px;
+    margin-top: 15px;
 
-    background-color: #62b6e9;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
 
+    background: #3f6b4f; /* 포레스트 그린 */
+    color: #fffdf8;
     font-size: 16px;
-    color: white;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: 500;
 
     transition: 0.2s ease;
 }
 
 .login-card button:hover {
-    background-color: #4aa4d8;
+    background: #345a42;
 }
 
 /* 회원가입 링크 */
 .signup-link {
     margin-top: 20px;
     font-size: 14px;
-    color: #3e4b6a;
-    text-align: center;
-    width: 100%;
+    color: #6b5a4b;
 }
 
 .signup-link a {
-    text-decoration: none;
-    color: #3d8bd4;
+    color: #3f6b4f;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .signup-link a:hover {
