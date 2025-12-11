@@ -5,6 +5,7 @@ from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import jwt, JWTError
 
+from app.core.auth import get_current_user
 from app.core.templates import templates
 from app.models.user import User
 from app.models.token_blacklist import TokenBlacklist
@@ -67,4 +68,13 @@ async def logout(credentials: HTTPAuthorizationCredentials = Depends(security)):
     await TokenBlacklist.create(token=token)
 
     return {"message": "Logged out successfully"}
+
+@router.get("/me")
+async def me(user: User = Depends(get_current_user)):
+    return {
+        "id": user.id,
+        "email": user.email,
+        "nickname": user.nickname,
+    }
+
 

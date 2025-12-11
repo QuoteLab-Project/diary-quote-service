@@ -6,7 +6,6 @@ class TokenBlacklistCreate(BaseModel):
     expired_at: datetime
     user_id: int   # ForeignKey는 일반적으로 id로 보냄
 
-
 class TokenBlacklistResponse(BaseModel):
     id: int
     token: str

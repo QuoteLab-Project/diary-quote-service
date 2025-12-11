@@ -7,7 +7,7 @@ class Quote(Model):
     content = fields.TextField()
     author = fields.CharField(max_length=255)
 
-    bookmarks: fields.ManyToManyRelation["Bookmark"]
+    quote_bookmarks: fields.ReverseRelation["BookmarkQuote"]
 
     class Meta:
         table = "quotes"

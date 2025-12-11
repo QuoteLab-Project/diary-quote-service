@@ -1,54 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/login.css">
+    <meta charset="UTF-8"/>
     <title>로그인</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 </head>
-<body>
-    <div class="container">
-        <div class="login-card">
-            <h2>로그인</h2>
+<body class="auth-body">
 
-            <form id="loginForm">
-                <input type="email" id="email" placeholder="이메일" required>
-                <input type="password" id="password" placeholder="비밀번호" required>
+<div class="auth-card">
+    <h1 class="auth-title">로그인</h1>
 
-                <button type="submit">로그인</button>
-            </form>
+    <form id="loginForm" class="auth-form">
+        <input type="email" name="email" placeholder="이메일" required class="auth-input">
+        <input type="password" name="password" placeholder="비밀번호" required class="auth-input">
 
-            <p class="signup-link">
-                아직 계정이 없으신가요? <a href="/auth/signup">회원가입</a>
-            </p>
-        </div>
-    </div>
+        <button type="submit" class="btn-primary">로그인</button>
+    </form>
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
+    <p class="auth-toggle">
+        계정이 없으신가요?
+        <a href="/signup">회원가입 하기</a>
+    </p>
+</div>
 
-            const payload = {
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
-            };
-
-            const res = await fetch("/auth/login", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload),
-            });
-
-            const data = await res.json();
-
-            if (data.access_token) {
-                localStorage.setItem("token", data.access_token);
-                alert("로그인 성공!");
-                // 이후 redirect 하고 싶으면:
-                // window.location.href = "/dashboard";
-            } else {
-                alert(data.detail || "로그인 실패");
-            }
-        });
-    </script>
+<script src="/static/login.js"></script>
 </body>
 </html>
