@@ -1,20 +1,3 @@
-# from tortoise import fields, models
-#
-# class BookmarkQuote(models.Model):
-#     bookmark = fields.ForeignKeyField(
-#         "models.Bookmark",
-#         related_name="bookmark_quotes",
-#         pk=True
-#     )
-#     quote = fields.ForeignKeyField(
-#         "models.Quote",
-#         related_name="quote_bookmarks",
-#         pk=True
-#     )
-#
-#     class Meta:
-#         table = "bookmarks_has_quotes"
-
 from tortoise import fields
 from tortoise.models import Model
 
@@ -22,8 +5,14 @@ from tortoise.models import Model
 class BookmarkQuote(Model):
     id = fields.IntField(pk=True)
 
-    bookmark = fields.ForeignKeyField("models.Bookmark", related_name="bookmark_quotes")
-    quote = fields.ForeignKeyField("models.Quote", related_name="quote_bookmarks")
+    bookmark = fields.ForeignKeyField(
+        "models.Bookmark",
+        related_name="bookmark_quotes"
+    )
+    quote = fields.ForeignKeyField(
+        "models.Quote",
+        related_name="quote_bookmarks"
+    )
 
     class Meta:
         table = "bookmarks_has_quotes"

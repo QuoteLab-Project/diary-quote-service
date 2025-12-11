@@ -1,80 +1,56 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <meta charset="UTF-8"/>
     <title>홈</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 </head>
-
 <body>
-<div class="container">
 
-    <!-- 명언 카드 -->
-    <div class="card" id="quote-card">
-        <h3>오늘의 명언</h3>
-
-        <div class="content">
-            <p id="quote-text">명언 텍스트가 여기에 표시됩니다.</p>
-            <span id="quote-author">- 저자 -</span>
-        </div>
-
-        <div class="card-buttons">
-            <button class="primary" onclick="loadQuote()">명언 바꾸기</button>
-            <button class="secondary" onclick="bookmarkQuote()">⭐ 북마크</button>
-        </div>
+<header class="header">
+    <h1 class="header-title">오늘의 다이어리</h1>
+    <div class="header-user">
+        <span class="username">로딩중...</span>
+        <button id="logoutBtn" class="btn-secondary">로그아웃</button>
     </div>
+</header>
 
+<main class="main-content">
 
-    <!-- 일기 카드 -->
-    <div class="card" id="diary-card">
-        <h3>나의 일기</h3>
+    <!-- 오늘의 질문 -->
+    <section class="section-card">
+        <h2 class="section-title">오늘의 질문</h2>
+        <p id="questionText" class="section-text"></p>
+        <p id="questionCategory" class="section-subtext"></p>
+        <button id="newQuestionBtn" class="btn-primary">다른 질문</button>
+    </section>
 
-        <div class="content">
-            <p id="diary-preview">최근 일기가 여기에 표시됩니다.</p>
-            <span id="diary-time">수정 시간: -</span>
-        </div>
+    <!-- 오늘의 명언 -->
+    <section class="section-card">
+        <h2 class="section-title">오늘의 명언</h2>
+        <blockquote id="quoteContent" class="quote"></blockquote>
+        <p id="quoteAuthor" class="section-subtext"></p>
+        <button id="newQuoteBtn" class="btn-primary">다른 명언</button>
+    </section>
 
-        <div class="card-buttons">
-            <button class="primary" onclick="goWrite()">작성하기</button>
-            <button class="secondary" onclick="goEdit()">수정</button>
-            <button class="danger" onclick="deleteDiary()">삭제</button>
-        </div>
-    </div>
+    <!-- 오늘의 일기 -->
+    <section class="section-card">
+        <h2 class="section-title">오늘의 일기</h2>
+        <input id="diaryTitle" type="text" placeholder="제목" class="auth-input">
+        <textarea id="diaryContent" placeholder="내용을 작성하세요" class="textarea"></textarea>
+        <button id="saveDiaryBtn" class="btn-primary">일기 저장</button>
+    </section>
 
+    <!-- 최근 일기 -->
+    <section class="section-card">
+        <h2 class="section-title">내 최근 일기</h2>
+        <ul id="diaryList" class="diary-list"></ul>
 
-    <!-- 오늘의 질문 카드 -->
-    <div class="card" id="question-card">
-        <h3>오늘의 질문</h3>
+        <a href="/diaries" class="view-more">전체보기 →</a>
+    </section>
 
-        <div class="content">
-            <p id="question-text">질문이 여기에 표시됩니다.</p>
-        </div>
+</main>
 
-        <div class="card-buttons">
-            <button class="primary" onclick="loadQuestion()">질문 바꾸기</button>
-        </div>
-    </div>
-
-
-    <!-- 북마크 카드 -->
-    <div class="card" id="bookmark-card">
-        <h3>북마크</h3>
-
-        <div class="content bookmark-list" id="bookmark-list">
-            <p class="empty">북마크한 명언이 없습니다.</p>
-        </div>
-    </div>
-
-</div>
-
-<script>
-    function loadQuote() {}
-    function bookmarkQuote() {}
-    function loadQuestion() {}
-    function goWrite() { window.location.href = "/diary/write"; }
-    function goEdit() {}
-    function deleteDiary() {}
-</script>
-
+<script src="/static/home.js"></script>
 </body>
 </html>

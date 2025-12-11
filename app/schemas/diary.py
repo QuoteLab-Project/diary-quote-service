@@ -14,7 +14,6 @@ class DiaryOut(BaseModel):
     title: str
     text: str
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}

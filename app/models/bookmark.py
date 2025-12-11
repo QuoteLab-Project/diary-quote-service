@@ -26,11 +26,7 @@ class Bookmark(Model):
     created_at = fields.DatetimeField(auto_now_add=True)
 
     user = fields.ForeignKeyField("models.User", related_name="bookmarks")
-    quotes: fields.ManyToManyRelation["Quote"] = fields.ManyToManyField(
-        "models.Quote",
-        related_name="bookmarks",
-        through="bookmarks_has_quotes"
-    )
+    bookmark_quotes: fields.ReverseRelation["BookmarkQuote"]
 
     class Meta:
         table = "bookmarks"

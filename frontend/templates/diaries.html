@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>전체 일기</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1 class="header-title">전체 일기 목록</h1>
+</header>
+
+<main class="main-content">
+    <ul id="diaryAllList" class="diary-list-full"></ul>
+</main>
+
+<script src="{{ url_for('static', path='diaries.js') }}"></script>
+</body>
+</html>

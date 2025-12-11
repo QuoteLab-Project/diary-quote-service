@@ -9,12 +9,13 @@ from app.api.v1.auth import router as auth_router
 from app.api.v1.quote import router as quotes_router
 from app.api.v1.diary import router as diary_router
 from app.api.v1.questions import router as questions_router
+from app.api.v1.frontend import router as frontend_router
 
 load_dotenv()
 app = FastAPI()
 
 # static
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+app.mount("/static", StaticFiles(directory="frontend/static/"), name="static")
 
 # Tortoise ORM
 register_tortoise(
@@ -32,6 +33,7 @@ async def root():
 
 
 # Router
+app.include_router(frontend_router, tags=["Frontend"])
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
 app.include_router(quotes_router, prefix="/quotes", tags=["Quotes"])
 app.include_router(diary_router, prefix="/diary", tags=["Diary"])

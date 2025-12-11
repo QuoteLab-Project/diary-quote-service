@@ -1,49 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/signup.css">
+    <meta charset="UTF-8"/>
     <title>회원가입</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 </head>
+<body class="auth-body">
 
-<body>
-    <div class="container">
-        <div class="signup-card">
-            <h2>회원가입</h2>
+<div class="auth-card">
+    <h1 class="auth-title">회원가입</h1>
 
-            <form id="signupForm">
-                <input type="email" id="email" placeholder="이메일" required>
-                <input type="text" id="nickname" placeholder="닉네임" required>
-                <input type="password" id="password" placeholder="비밀번호" required>
+    <form id="signupForm" class="auth-form">
+        <input type="email" name="email" placeholder="이메일" required class="auth-input">
+        <input type="text" name="nickname" placeholder="닉네임" required class="auth-input">
+        <input type="password" name="password" placeholder="비밀번호" required class="auth-input">
 
-                <button type="submit">가입하기</button>
-            </form>
+        <button type="submit" class="btn-primary">회원가입</button>
+    </form>
 
-            <p class="login-link">
-                이미 계정이 있으신가요? <a href="/auth/login">로그인</a>
-            </p>
-        </div>
-    </div>
+    <p class="auth-toggle">
+        이미 계정이 있으신가요?
+        <a href="/login">로그인 하기</a>
+    </p>
+</div>
 
-    <script>
-        document.getElementById("signupForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const payload = {
-                email: document.getElementById("email").value,
-                nickname: document.getElementById("nickname").value,
-                password: document.getElementById("password").value,
-            };
-
-            const res = await fetch("/auth/signup", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload),
-            });
-
-            const data = await res.json();
-            alert(JSON.stringify(data));
-        });
-    </script>
+<script src="/static/signup.js"></script>
 </body>
 </html>
