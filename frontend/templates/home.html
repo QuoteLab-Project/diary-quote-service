@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='home.css') }}">
 </head>
 <body>
 
 <header class="header">
     <h1 class="header-title">오늘의 다이어리</h1>
+
     <div class="header-user">
         <span class="username">로딩중...</span>
         <button id="logoutBtn" class="btn-secondary">로그아웃</button>
     </div>
 </header>
 
-<main class="main-content">
+<main class="content-wrapper">
 
     <!-- 오늘의 질문 -->
-    <section class="section-card">
-        <h2 class="section-title">오늘의 질문</h2>
-        <p id="questionText" class="section-text"></p>
-        <p id="questionCategory" class="section-subtext"></p>
-        <button id="newQuestionBtn" class="btn-primary">다른 질문</button>
+    <section class="card">
+        <h3>오늘의 질문</h3>
+        <div class="content">
+            <p id="questionText">로딩중...</p>
+            <span id="questionCategory"></span>
+        </div>
+        <div class="card-buttons">
+            <button id="newQuestionBtn" class="primary">다른 질문</button>
+        </div>
     </section>
 
     <!-- 오늘의 명언 -->
-    <section class="section-card">
-        <h2 class="section-title">오늘의 명언</h2>
-        <blockquote id="quoteContent" class="quote"></blockquote>
-        <p id="quoteAuthor" class="section-subtext"></p>
-        <button id="newQuoteBtn" class="btn-primary">다른 명언</button>
+    <section class="card">
+        <h3>오늘의 명언</h3>
+        <div class="content">
+            <p id="quoteContent">로딩중...</p>
+            <span id="quoteAuthor"></span>
+        </div>
+        <div class="card-buttons">
+            <button id="newQuoteBtn" class="primary">다른 명언</button>
+        </div>
     </section>
 
     <!-- 오늘의 일기 -->
-    <section class="section-card">
-        <h2 class="section-title">오늘의 일기</h2>
-        <input id="diaryTitle" type="text" placeholder="제목" class="auth-input">
-        <textarea id="diaryContent" placeholder="내용을 작성하세요" class="textarea"></textarea>
-        <button id="saveDiaryBtn" class="btn-primary">일기 저장</button>
+    <section class="card">
+        <h3>오늘의 일기</h3>
+        <div class="content">
+            <input id="diaryTitle" type="text" placeholder="제목을 입력하세요" class="input">
+            <textarea id="diaryContent" placeholder="내용을 입력하세요" class="textarea"></textarea>
+        </div>
+        <div class="card-buttons">
+            <button id="saveDiaryBtn" class="primary">일기 저장</button>
+        </div>
     </section>
 
     <!-- 최근 일기 -->
-    <section class="section-card">
-        <h2 class="section-title">내 최근 일기</h2>
+    <section class="card">
+        <h3>내 최근 일기</h3>
         <ul id="diaryList" class="diary-list"></ul>
 
         <a href="/diaries" class="view-more">전체보기 →</a>

@@ -1,4 +1,4 @@
-/* 전체 배경: 초록 → 파랑 부드러운 그라데이션 */
+/* 따뜻한 종이 배경 */
 body {
     margin: 0;
     padding: 0;
@@ -8,101 +8,108 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-
-    background: linear-gradient(135deg, #a9e6b6 0%, #7cc9e8 100%);
+    background: #f7f3e9; /* 종이색 */
+    font-family: "Noto Sans KR", sans-serif;
 }
 
-/* 카드 외형 */
-.signup-card {
-    background: rgba(255, 255, 255, 0.90);
-    backdrop-filter: blur(8px);
-    width: 400px;
-    padding: 40px 35px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
-    /*  카드 내부 요소 정렬 핵심  */
+/* wrapper */
+.signup-wrapper {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;  /* ← 내부 모든 요소 가운데 정렬 */
+    width: 100%;
 }
 
-/* 제목 */
-.signup-card h2 {
-    font-size: 26px;
-    margin-bottom: 25px;
-    color: #2e3a59;
+/* 카드 */
+.signup-card {
+    width: 400px;
+    padding: 45px 40px;
+    border-radius: 16px;
+
+    background: #fffdf8; /* 종이 느낌 크림색 */
+    border: 1px solid #e8e2d8;
+    box-shadow: 0 6px 15px rgba(140, 120, 90, 0.12);
+
     text-align: center;
 }
 
-/* 폼 전체를 세로 정렬, 가운데 배치 */
-.signup-card form {
-    width: 100%;
+.signup-card h2 {
+    font-size: 26px;
+    margin-bottom: 6px;
+    color: #5a4633; /* 브라운 */
+}
 
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #8b7663;
+}
+
+/* form 요소를 가운데 정렬 */
+.signup-form {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;      /* ← input, button 모두 가운데 */
+    align-items: center;
 }
 
 /* 입력창 */
 .signup-card input {
-    width: 90%;               /* 카드 기준 자연스럽게 가운데 */
-    padding: 14px 15px;
+    width: 90%;
+    padding: 14px;
     margin: 10px 0;
-    border: 1px solid #d4dbe6;
-    border-radius: 12px;
-    font-size: 15px;
 
-    background-color: #f9f9fc;
-    transition: all 0.25s ease;
+    border-radius: 10px;
+    border: 1px solid #d8cfc4;
+    background: #fefdfb;
+
+    font-size: 15px;
+    color: #4e453c;
+
+    transition: 0.2s ease;
 }
 
 .signup-card input:focus {
-    border-color: #62b6e9;
-    box-shadow: 0 0 8px rgba(98, 182, 233, 0.35);
+    border-color: #b9a695;
+    box-shadow: 0 0 6px rgba(185, 166, 149, 0.4);
     outline: none;
 }
 
-/* 버튼 */
+/* 버튼: 포레스트 그린 */
 .signup-card button {
     width: 90%;
     padding: 14px;
-    margin-top: 18px;
+    margin-top: 15px;
 
-    background-color: #62b6e9;
+    border-radius: 10px;
     border: none;
-    border-radius: 12px;
 
-    font-size: 16px;
-    color: white;
+    background: #3f6b4f;
+    color: #fffdf8;
+
     cursor: pointer;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
 
     transition: 0.2s ease;
 }
 
 .signup-card button:hover {
-    background-color: #4aa4d8;
+    background: #345a42;
 }
 
 /* 로그인 링크 */
 .login-link {
     margin-top: 20px;
     font-size: 14px;
-    color: #3e4b6a;
-
-    text-align: center;       /* 가운데 정렬 */
-    width: 100%;
+    color: #6b5a4b;
 }
 
 .login-link a {
-    text-decoration: none;
-    color: #3d8bd4;
+    color: #3f6b4f;
     font-weight: 600;
+    text-decoration: none;
 }
 
-login-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }

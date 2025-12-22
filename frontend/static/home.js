@@ -3,9 +3,6 @@
 // ------------------------------
 function authHeaders() {
     const token = localStorage.getItem("token");
-    if (!token) {
-        console.warn("토큰 없음");
-    }
     return {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
@@ -13,31 +10,22 @@ function authHeaders() {
 }
 
 // ------------------------------
-// 로그인 사용자 정보
-// GET /auth/me
+// 로그인 사용자 정보 불러오기
 // ------------------------------
 async function loadUser() {
-    const res = await fetch("/auth/me", {
-        headers: authHeaders(),
-    });
+    const res = await fetch("/auth/me", { headers: authHeaders() });
 
-    if (!res.ok) {
-        console.log("유저 정보 불러오기 실패");
-        return;
-    }
+    if (!res.ok) return;
 
     const user = await res.json();
     document.querySelector(".username").innerText = `${user.nickname}님`;
 }
 
 // ------------------------------
-// 오늘의 질문 불러오기
-// GET /questions/
+// 오늘의 질문
 // ------------------------------
 async function loadQuestion() {
-    const res = await fetch("/questions/", {
-        headers: authHeaders(),
-    });
+    const res = await fetch("/questions/", { headers: authHeaders() });
 
     if (!res.ok) {
         document.querySelector("#questionText").innerText = "질문을 가져올 수 없습니다.";
@@ -45,19 +33,15 @@ async function loadQuestion() {
     }
 
     const data = await res.json();
-
     document.querySelector("#questionText").innerText = data.text;
     document.querySelector("#questionCategory").innerText = `카테고리: ${data.category}`;
 }
 
 // ------------------------------
-// 오늘의 명언 불러오기
-// GET /quotes/random
+// 오늘의 명언
 // ------------------------------
 async function loadQuote() {
-    const res = await fetch("/quotes/random", {
-        headers: authHeaders(),
-    });
+    const res = await fetch("/quotes/random", { headers: authHeaders() });
 
     if (!res.ok) {
         document.querySelector("#quoteContent").innerText = "명언을 가져올 수 없습니다.";
@@ -71,14 +55,13 @@ async function loadQuote() {
 
 // ------------------------------
 // 일기 저장
-// POST /diary/
 // ------------------------------
 async function saveDiary() {
     const title = document.querySelector("#diaryTitle").value;
     const text = document.querySelector("#diaryContent").value;
 
     if (!title || !text) {
-        alert("제목과 내용을 모두 입력해주세요.");
+        alert("제목과 내용을 입력하세요.");
         return;
     }
 
@@ -93,31 +76,32 @@ async function saveDiary() {
         document.querySelector("#diaryTitle").value = "";
         document.querySelector("#diaryContent").value = "";
         loadRecentDiaries();
-    } else {
-        alert("일기 저장 실패");
     }
 }
 
 // ------------------------------
-// 최근 일기 5개 불러오기
-// GET /diary/
+// 최근 일기 불러오기 (날짜 + 시간 포함)
 // ------------------------------
 async function loadRecentDiaries() {
-    const res = await fetch("/diary/", {
-        headers: authHeaders(),
-    });
-
+    const res = await fetch("/diary/", { headers: authHeaders() });
     if (!res.ok) return;
 
     const diaries = await res.json();
     const list = document.querySelector("#diaryList");
-
     list.innerHTML = "";
 
-    diaries.slice(0, 5).forEach((d) => {
+    diaries.slice(0, 5).forEach(d => {
+        const dateObj = new Date(d.created_at);
+        const formatted =
+            `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, "0")}-${String(dateObj.getDate()).padStart(2, "0")} ` +
+            `${String(dateObj.getHours()).padStart(2, "0")}:${String(dateObj.getMinutes()).padStart(2, "0")}`;
+
         const li = document.createElement("li");
         li.innerHTML = `
-            <strong>${d.title}</strong>
+            <div class="diary-header">
+                <strong>${d.title}</strong>
+                <span class="diary-date">${formatted}</span>
+            </div>
             <p>${d.text.substring(0, 40)}...</p>
         `;
         list.appendChild(li);
@@ -145,7 +129,7 @@ document.querySelector("#newQuoteBtn").addEventListener("click", loadQuote);
 document.querySelector("#saveDiaryBtn").addEventListener("click", saveDiary);
 
 // ------------------------------
-// 페이지 로드 시
+// 초기 데이터 로드
 // ------------------------------
 loadUser();
 loadQuestion();
